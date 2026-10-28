@@ -1,0 +1,104 @@
+{
+  "JavaRelease": 25,
+  "JarName": "B42WoodCutterTreeOutline.jar",
+  "AdditionalClasspath": [],
+  "Entries": [
+    {
+      "Path": "antikristianos/woodcutter/Main$Mark.class",
+      "Size": 4304,
+      "Sha256": "B76A34B7E13F947264B5968D478AB475E27DCE60F8F6484A508943D3170CF737"
+    },
+    {
+      "Path": "antikristianos/woodcutter/Main$Region.class",
+      "Size": 798,
+      "Sha256": "36E13EB65A5BFCC6F06E78E03F743AD025711305003902C8D1BBDDB13BD16A5D"
+    },
+    {
+      "Path": "antikristianos/woodcutter/Main.class",
+      "Size": 15578,
+      "Sha256": "4E72EE5319601D15182A234D7C9D736E74D36B56CB883835C9BAE4E609ED03F0"
+    },
+    {
+      "Path": "antikristianos/woodcutter/OutlinePasses$Snapshot.class",
+      "Size": 1580,
+      "Sha256": "3A33F2ED0B37349E5B16AA3D858E56D8B0CC383B5771602CF30BD10255DB0C59"
+    },
+    {
+      "Path": "antikristianos/woodcutter/OutlinePasses.class",
+      "Size": 4658,
+      "Sha256": "0EB448B5A9E67E22C23F0B95EC4918526741609D5E71354FF1104E54B1C9B04A"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchChunkSquare.class",
+      "Size": 1105,
+      "Sha256": "A12FD00D2F771B2C5F748AE017A942B61B26D3A26D1D24C3E077138920DBEF02"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchOutlineGeometry.class",
+      "Size": 1055,
+      "Sha256": "0F0328D411C354A80A18410BE603601BD94DF2B06C9E296BEDFBFA2A35308848"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchOutlinePass.class",
+      "Size": 1113,
+      "Sha256": "D411CB00C3709667F0076EAA31107C61E4F5DC1E18EE3D6F034DFC1C9E3366BF"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchOutlineReleased.class",
+      "Size": 909,
+      "Sha256": "48C90018F86A5B12CD9AAC359F98589537D9E16378DB08FE6A32014FAB22AF79"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchTreeAdded.class",
+      "Size": 856,
+      "Sha256": "BC31B95171FE4115CE421183A3F85DD746D371E0AEA01A16876BBE210744A333"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchTreeRemoved.class",
+      "Size": 869,
+      "Sha256": "74A5DEE4EFA26D79E3E2395BA55D273E66849169D00A94C549583B1CA4B1303C"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PatchTreeSquareRemoved.class",
+      "Size": 882,
+      "Sha256": "0A5F0E74D0B4D2157FABEE465D0D636A688CECCB6C95F60F92BFF0A65120455A"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PreparedContours$Binding.class",
+      "Size": 1873,
+      "Sha256": "B72EE6AE725C18522AEE478305699BA11FE4ECEDC8A50E78013B6E8514F907AA"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PreparedContours$Pose.class",
+      "Size": 1845,
+      "Sha256": "DCAE15A8A7323954C2B0F738D2C2BF998493A7371BB228D37F14D5353D2F8818"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PreparedContours$Shape.class",
+      "Size": 1656,
+      "Sha256": "8B85F33D076DFB78B1507346C7D453F9FC99666447639BEB8145C4587AA26552"
+    },
+    {
+      "Path": "antikristianos/woodcutter/PreparedContours.class",
+      "Size": 5271,
+      "Sha256": "4DEBAC4EF0840B316284A9AA5C8D7C32D8E9C1910812B6FD12132BBD53FA6236"
+    },
+    {
+      "Path": "antikristianos/woodcutter/exterior.bin",
+      "Size": 478992,
+      "Sha256": "5D6A3F17731307C98B593B2B45CB3579B852CF6593B7FDEFAC2BC08799BA712A"
+    }
+  ],
+  "Dependencies": [
+    {
+      "Path": "projectzomboid.jar",
+      "Size": 66254409,
+      "Sha256": "90C54B84EBC160AE053CBEFE30C7713826CA4FDB4934FDE53C9EBDE0FF9892F3"
+    },
+    {
+      "Path": "ZombieBuddy.jar",
+      "Size": 12491692,
+      "Sha256": "79120880FDA051718082BD9BF0C2C2B639450AE73641FDB4631750221A57B208"
+    }
+  ]
+}

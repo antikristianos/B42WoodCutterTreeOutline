@@ -1,0 +1,114 @@
+{
+  "SchemaVersion": 1,
+  "Project": "B42WoodCutterTreeOutline",
+  "Repository": "antikristianos/B42WoodCutterTreeOutline",
+  "Branch": "wip",
+  "Tag": "wip-1.63",
+  "ModVersion": "1.3.1",
+  "CollectionVersion": "1.63",
+  "WorkshopId": 3802764936,
+  "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
+  "UploadManifestSha256": "2DF2A9D193786BC163CE4EA9E9B6232EE0819F421B726E8CA65CB59859AB0AD7",
+  "Artifact": {
+    "Path": "mods/B42WoodCutterTreeOutilneZB_WIP/42.22/media/java/client/B42WoodCutterTreeOutline.jar",
+    "Size": 526823,
+    "Sha256": "0EA9C9B67A6575B90B3996F2E0243C206EA0F7919723ACB30DD1646131D73A60"
+  },
+  "Sources": [
+    {
+      "Path": ".gitignore",
+      "Size": 8,
+      "Sha256": "020C2606E8ED484089C2083E0BE438B9D0736BEE1558A6B76AF0D58BD23F69CF"
+    },
+    {
+      "Path": "MANIFEST.MF",
+      "Size": 93,
+      "Sha256": "AE93560596C994C10503F4E6873798E42AE2883EF9933A5FC5C794BDD9DE2B0B"
+    },
+    {
+      "Path": "README.md",
+      "Size": 1471,
+      "Sha256": "314E0AD7F7504D2D52E78CC205489D3E72E7892BD1A42433223A05F91A53F46F"
+    },
+    {
+      "Path": "build.json",
+      "Size": 3645,
+      "Sha256": "6A5790B7BF472E4B2CBB28A4FD07822A6AD18320892C5FB4BDE126DC847DCD63"
+    },
+    {
+      "Path": "build.ps1",
+      "Size": 2600,
+      "Sha256": "8389B7B0B5515387FA5D9B3989FED7C8629DA7762817C03AD266B69DE5B2B0FD"
+    },
+    {
+      "Path": "resources/antikristianos/woodcutter/exterior.bin",
+      "Size": 478992,
+      "Sha256": "5D6A3F17731307C98B593B2B45CB3579B852CF6593B7FDEFAC2BC08799BA712A"
+    },
+    {
+      "Path": "runtime/42.22/media/lua/client/WoodCutterTreeOutline.lua",
+      "Size": 3219,
+      "Sha256": "16DE84800EE96D26E2B1BEA70AF5D83CECD3CA7059F71E363EC96DBA452F48F4"
+    },
+    {
+      "Path": "runtime/42.22/media/lua/shared/Translate/EN/IG_UI.json",
+      "Size": 675,
+      "Sha256": "A538BABAE78C3E57A9C7786C761F559D70BC77DCBC93982FF3F478654DEBB72D"
+    },
+    {
+      "Path": "runtime/42.22/mod.info",
+      "Size": 439,
+      "Sha256": "8677A1348B88D5B84C7C591C7F657B2474DD4DACF1BD78F9E679B95F2C1B9EED"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/Main.java",
+      "Size": 18680,
+      "Sha256": "759901D8099174AC0EC88E4B17B6F88C093A060B7E16EB74FC98E162BEBF20A1"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/OutlinePasses.java",
+      "Size": 3603,
+      "Sha256": "48116F99EBBE12D7EAB749A42919C2B6574B6A1AD8111044C6DD9A42EBED097E"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchChunkSquare.java",
+      "Size": 514,
+      "Sha256": "52CFA24C3A6823C2DF3F9990DDC6A4B3B005D6BFD1799389ACAF802CBBE48584"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchOutlineGeometry.java",
+      "Size": 422,
+      "Sha256": "389F2C1051CB35039FDF201480F1B5DBB33A90B2464DE9A368D6B73249D93ECE"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchOutlinePass.java",
+      "Size": 469,
+      "Sha256": "6454932EC61FBA936B484E7151BB7004752A868AA1B95259FC2A20E1404A25B9"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchOutlineReleased.java",
+      "Size": 348,
+      "Sha256": "008D20A951037497700E2F0692268EDD34C585B428E3FAA9B1655D5636AF7C6D"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchTreeAdded.java",
+      "Size": 332,
+      "Sha256": "1DBF98953DBC548ADFB18DC7060970227393A1C7EE855573F8D4ECF561FC270A"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchTreeRemoved.java",
+      "Size": 341,
+      "Sha256": "883AF0DF02819F4025D93A671FDC089562C75D43940B12271387B85E5BB30005"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PatchTreeSquareRemoved.java",
+      "Size": 348,
+      "Sha256": "DAAB3023FE8E0644DC8DE585175B3AED1FD7D523A56878A3701EB04B0E9266D1"
+    },
+    {
+      "Path": "src/antikristianos/woodcutter/PreparedContours.java",
+      "Size": 3593,
+      "Sha256": "45284D8DADD73317E0B29E02DAC333590962E8B197A108F9145925883B6735C6"
+    }
+  ]
+}

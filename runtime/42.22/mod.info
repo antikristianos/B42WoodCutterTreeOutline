@@ -1,0 +1,11 @@
+name=[B42] Wood Cutter Tree Outline ZB (WIP)
+id=B42WoodCutterTreeOutilneZB_WIP
+author=Antikristianos
+description=Native tree aim outlines; requires ZombieBuddy.
+icon=../common/icon.png
+require=\ZombieBuddy
+javaJarFile=media/java/client/B42WoodCutterTreeOutline.jar
+javaPkgName=antikristianos.woodcutter
+modversion=1.3.1
+versionMin=42.22.0
+incompatible=B42WoodCutterTreeOutilneZB,B42WoodCutterTreeOutlineLUA,B42WoodCutterTreeOutlineLUA_WIP
