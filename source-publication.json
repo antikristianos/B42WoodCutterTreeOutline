@@ -3,16 +3,16 @@
   "Project": "B42WoodCutterTreeOutline",
   "Repository": "antikristianos/B42WoodCutterTreeOutline",
   "Branch": "wip",
-  "Tag": "wip-1.73",
-  "ModVersion": "1.3.1",
-  "CollectionVersion": "1.73",
+  "Tag": "wip-1.74",
+  "ModVersion": "1.4",
+  "CollectionVersion": "1.74",
   "WorkshopId": 3802764936,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
-  "UploadManifestSha256": "2ABF9D7AF3EF37A06138798DA34248FB098D85FDFBDB9DAA6B4D0E1EDC4D139D",
+  "UploadManifestSha256": "6635C9922F3B93194AD831FAE10CB92BFD22908005B4DCD304C78185535870CF",
   "Artifact": {
     "Path": "mods/B42WoodCutterTreeOutilneZB_WIP/42.22/media/java/client/B42WoodCutterTreeOutline.jar",
-    "Size": 526823,
-    "Sha256": "0EA9C9B67A6575B90B3996F2E0243C206EA0F7919723ACB30DD1646131D73A60"
+    "Size": 526821,
+    "Sha256": "1BB6814968A260E4E6887921730C002EDD6B3A5174C6C19CC3323098FE70192B"
   },
   "Sources": [
     {
@@ -22,13 +22,13 @@
     },
     {
       "Path": "MANIFEST.MF",
-      "Size": 93,
-      "Sha256": "AE93560596C994C10503F4E6873798E42AE2883EF9933A5FC5C794BDD9DE2B0B"
+      "Size": 91,
+      "Sha256": "7E8F0FCB4A89AD4502D61F7D9076CD217A9F49E38874EE4C7B8B92335489CB50"
     },
     {
       "Path": "README.md",
-      "Size": 1471,
-      "Sha256": "314E0AD7F7504D2D52E78CC205489D3E72E7892BD1A42433223A05F91A53F46F"
+      "Size": 1469,
+      "Sha256": "6B8335177FFDE91149D6D6A37AC4A5296401307A9B09B6B8CD404210E711FAED"
     },
     {
       "Path": "build.json",
@@ -57,8 +57,8 @@
     },
     {
       "Path": "runtime/42.22/mod.info",
-      "Size": 439,
-      "Sha256": "8677A1348B88D5B84C7C591C7F657B2474DD4DACF1BD78F9E679B95F2C1B9EED"
+      "Size": 437,
+      "Sha256": "DC4B61AB2D86120E2863621792B0574F2A3411361E8E86B24EB6E21A5228D290"
     },
     {
       "Path": "src/antikristianos/woodcutter/Main.java",
