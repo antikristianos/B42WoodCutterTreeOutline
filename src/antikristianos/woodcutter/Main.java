@@ -23,7 +23,7 @@ public final class Main {
     private static final List<IsoTree> candidates=new ArrayList<>();
     private static final IdentityHashMap<IsoTree,Mark> marks=new IdentityHashMap<>();
     private static IsoPlayer trackedPlayer;
-    // Build 42.21 uses eight tiles per chunk. The revision gate also guards this layout.
+    // Build 42.22 uses eight tiles per chunk. The revision gate also guards this layout.
     private static final int CHUNK_TILES=8;
     private static final IsoChunk[] chunks=new IsoChunk[16];
     private static final short[] chunkLoadIds=new short[16];
@@ -44,7 +44,7 @@ public final class Main {
     private static boolean diagnosticStarted;
 
     public static void main(String[] args) {
-        supported="4a0e9546ec".equals(zombie.GitVersion.REVISION);
+        supported="e013dbb529".equals(zombie.GitVersion.REVISION);
         if(supported)try{
             Class<?> drawer=Class.forName("zombie.iso.fboRenderChunk.FBORenderObjectOutline$Drawer2");
             drawerX=drawer.getDeclaredField("renderX");drawerY=drawer.getDeclaredField("renderY");
