@@ -6,17 +6,17 @@
     {
       "Path": "antikristianos/woodcutter/Main$Mark.class",
       "Size": 4304,
-      "Sha256": "B76A34B7E13F947264B5968D478AB475E27DCE60F8F6484A508943D3170CF737"
+      "Sha256": "F3EEF2EDC6694E7116A51F7B39984B0F822A2C60E41CE95202F58FC8121B1AEA"
     },
     {
       "Path": "antikristianos/woodcutter/Main$Region.class",
       "Size": 798,
-      "Sha256": "36E13EB65A5BFCC6F06E78E03F743AD025711305003902C8D1BBDDB13BD16A5D"
+      "Sha256": "15F59569B65855A140FE39DE0E524F5AD4DCCFD9BCE35BD353535BD144AF5E3C"
     },
     {
       "Path": "antikristianos/woodcutter/Main.class",
-      "Size": 15578,
-      "Sha256": "4E72EE5319601D15182A234D7C9D736E74D36B56CB883835C9BAE4E609ED03F0"
+      "Size": 15500,
+      "Sha256": "F91781F4E821A5585FC8D4F88EA9F26D3B6C62D958E21136F0C1086799C6E8F5"
     },
     {
       "Path": "antikristianos/woodcutter/OutlinePasses$Snapshot.class",
@@ -92,8 +92,8 @@
   "Dependencies": [
     {
       "Path": "projectzomboid.jar",
-      "Size": 66254409,
-      "Sha256": "90C54B84EBC160AE053CBEFE30C7713826CA4FDB4934FDE53C9EBDE0FF9892F3"
+      "Size": 68816080,
+      "Sha256": "531DAAD77C92DCB93534E66FF37BECF86DC119F55C62345C622C52021170723E"
     },
     {
       "Path": "ZombieBuddy.jar",

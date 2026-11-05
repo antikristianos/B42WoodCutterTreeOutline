@@ -23,7 +23,7 @@ public final class Main {
     private static final List<IsoTree> candidates=new ArrayList<>();
     private static final IdentityHashMap<IsoTree,Mark> marks=new IdentityHashMap<>();
     private static IsoPlayer trackedPlayer;
-    // Build 42.22 uses eight tiles per chunk. The revision gate also guards this layout.
+    // The supported package slice uses eight tiles per chunk.
     private static final int CHUNK_TILES=8;
     private static final IsoChunk[] chunks=new IsoChunk[16];
     private static final short[] chunkLoadIds=new short[16];
@@ -44,14 +44,15 @@ public final class Main {
     private static boolean diagnosticStarted;
 
     public static void main(String[] args) {
-        supported="e013dbb529".equals(zombie.GitVersion.REVISION);
-        if(supported)try{
+        supported=false;
+        try{
             Class<?> drawer=Class.forName("zombie.iso.fboRenderChunk.FBORenderObjectOutline$Drawer2");
             drawerX=drawer.getDeclaredField("renderX");drawerY=drawer.getDeclaredField("renderY");
             drawerX.setAccessible(true);drawerY.setAccessible(true);
             OutlinePasses.configure(drawer);PreparedContours.bindings();
+            supported=true;
         }catch(ReflectiveOperationException error){supported=false;System.out.println("[B42WoodCutterTreeOutline] outline geometry unavailable: "+error);}
-        System.out.println("[B42WoodCutterTreeOutline] " + (supported ? "active; native tree-target rules, configurable character radius, 100 ms minimum query interval" : "inactive: game revision needs target-rule review"));
+        System.out.println("[B42WoodCutterTreeOutline] " + (supported ? "active; native tree-target rules, configurable character radius, 100 ms minimum query interval" : "inactive: outline geometry unavailable"));
     }
     public static int getOutlineRange() { return outlineRange; }
     public static boolean getAlwaysShow() { return alwaysShow; }

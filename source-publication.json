@@ -3,16 +3,16 @@
   "Project": "B42WoodCutterTreeOutline",
   "Repository": "antikristianos/B42WoodCutterTreeOutline",
   "Branch": "wip",
-  "Tag": "wip-1.80",
-  "ModVersion": "1.4",
-  "CollectionVersion": "1.80",
+  "Tag": "wip-1.81",
+  "ModVersion": "1.4.1",
+  "CollectionVersion": "1.81",
   "WorkshopId": 3802764936,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
-  "UploadManifestSha256": "C40AF9B59B6D599DBF4132FD357BA4C7187FF9922DADECF261FA4A433C859349",
+  "UploadManifestSha256": "7737F5DA54B12FFEB0391A45B0792D1920123C2905FBB6D421BE5D88F9E7CCA3",
   "Artifact": {
     "Path": "mods/B42WoodCutterTreeOutilneZB_WIP/42.22/media/java/client/B42WoodCutterTreeOutline.jar",
-    "Size": 526821,
-    "Sha256": "1BB6814968A260E4E6887921730C002EDD6B3A5174C6C19CC3323098FE70192B"
+    "Size": 526745,
+    "Sha256": "A25CC391F884C629142DF5DF1AF6D5A758E0B06DAB7D4A2DEFA5BDE689005283"
   },
   "Sources": [
     {
@@ -22,18 +22,18 @@
     },
     {
       "Path": "MANIFEST.MF",
-      "Size": 91,
-      "Sha256": "7E8F0FCB4A89AD4502D61F7D9076CD217A9F49E38874EE4C7B8B92335489CB50"
+      "Size": 93,
+      "Sha256": "72EA509B26EF7B88E654A4435D106CFC2A96A4DD2E48BF6DB52B93A71EE9212B"
     },
     {
       "Path": "README.md",
-      "Size": 1469,
-      "Sha256": "6B8335177FFDE91149D6D6A37AC4A5296401307A9B09B6B8CD404210E711FAED"
+      "Size": 1471,
+      "Sha256": "D6F57477480738598F94C1C661011818C789E920859EBDC81F3C9849083AA018"
     },
     {
       "Path": "build.json",
       "Size": 3645,
-      "Sha256": "9CFA6DCA8A1F7C886FE432B91B149017F8DBB06D2FC0E253771539C424AA498D"
+      "Sha256": "F7141587677794EBC80615F2DBCC2DA961DB474E1F8B50A7DA7BB845AF26A18C"
     },
     {
       "Path": "build.ps1",
@@ -57,13 +57,13 @@
     },
     {
       "Path": "runtime/42.22/mod.info",
-      "Size": 437,
-      "Sha256": "DC4B61AB2D86120E2863621792B0574F2A3411361E8E86B24EB6E21A5228D290"
+      "Size": 439,
+      "Sha256": "68F19E19123E93D939E2E91802E8E5CE92A18E4585030DD2C0CE76694E46AFAD"
     },
     {
       "Path": "src/antikristianos/woodcutter/Main.java",
-      "Size": 18680,
-      "Sha256": "759901D8099174AC0EC88E4B17B6F88C093A060B7E16EB74FC98E162BEBF20A1"
+      "Size": 18616,
+      "Sha256": "C705451A058A7D994348E1F88B94EE074A3A6DD986DD27320121A05B3717994F"
     },
     {
       "Path": "src/antikristianos/woodcutter/OutlinePasses.java",
