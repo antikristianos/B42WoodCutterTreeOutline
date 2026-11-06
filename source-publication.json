@@ -3,12 +3,12 @@
   "Project": "B42WoodCutterTreeOutline",
   "Repository": "antikristianos/B42WoodCutterTreeOutline",
   "Branch": "wip",
-  "Tag": "wip-1.83",
+  "Tag": "wip-1.84",
   "ModVersion": "1.4.1",
-  "CollectionVersion": "1.83",
+  "CollectionVersion": "1.84",
   "WorkshopId": 3802764936,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
-  "UploadManifestSha256": "B0983CE5AAB18AE48396CD36F752A6A31C01D20AF89B7AD8E665BE18C832D238",
+  "UploadManifestSha256": "8FD533D1C5DF3E2680193AC55A05A0C01046B4C42E3D20011526B56598AA6615",
   "Artifact": {
     "Path": "mods/B42WoodCutterTreeOutilneZB_WIP/42.22/media/java/client/B42WoodCutterTreeOutline.jar",
     "Size": 526745,
@@ -33,7 +33,7 @@
     {
       "Path": "build.json",
       "Size": 3645,
-      "Sha256": "F7141587677794EBC80615F2DBCC2DA961DB474E1F8B50A7DA7BB845AF26A18C"
+      "Sha256": "2CF6E8BB5775CB785E7515B9E5ACA688B9C3B25E020AE225D4E51E895DA8094D"
     },
     {
       "Path": "build.ps1",
