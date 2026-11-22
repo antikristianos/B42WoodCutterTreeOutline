@@ -18,15 +18,15 @@ import zombie.scripting.objects.WeaponCategory;
 public final class Main {
     private static final long POLL_NS=100_000_000L;
     private static int outlineRange=5;
-    private static boolean alwaysShow,showInVehicle;
+    private static int walkingRange,vehicleRange;
     private static final int HIDDEN=0,GRAY=1,AIM=2;
     private static final List<IsoTree> candidates=new ArrayList<>();
     private static final IdentityHashMap<IsoTree,Mark> marks=new IdentityHashMap<>();
     private static IsoPlayer trackedPlayer;
     // The supported package slice uses eight tiles per chunk.
     private static final int CHUNK_TILES=8;
-    private static final IsoChunk[] chunks=new IsoChunk[16];
-    private static final short[] chunkLoadIds=new short[16];
+    private static final IsoChunk[] chunks=new IsoChunk[36];
+    private static final short[] chunkLoadIds=new short[36];
     private static volatile Region region;
     private static final AtomicLong worldChanges=new AtomicLong();
     private static long cachedWorldChange;
@@ -55,13 +55,17 @@ public final class Main {
         System.out.println("[B42WoodCutterTreeOutline] " + (supported ? "active; native tree-target rules, configurable character radius, 100 ms minimum query interval" : "inactive: outline geometry unavailable"));
     }
     public static int getOutlineRange() { return outlineRange; }
-    public static boolean getAlwaysShow() { return alwaysShow; }
-    public static void setAlwaysShow(boolean value) { alwaysShow=value; }
-    public static boolean getShowInVehicle() { return showInVehicle; }
-    public static void setShowInVehicle(boolean value) { showInVehicle=value; }
-    public static void setOutlineRange(double value) {
-        outlineRange=Double.isFinite(value) ? (int)Math.max(0,Math.min(10,Math.round(value))) : 5;
-        if(outlineRange==0)clearMarks();
+    private static int normalize(double value,int max,int fallback) {
+        return Double.isFinite(value) ? (int)Math.max(0,Math.min(max,Math.round(value))) : fallback;
+    }
+    public static int getWalkingRange() { return walkingRange; }
+    public static int getVehicleRange() { return vehicleRange; }
+    public static void setWalkingRange(double value) { walkingRange=normalize(value,10,0); clearMarks(); }
+    public static void setVehicleRange(double value) { vehicleRange=normalize(value,20,0); clearMarks(); }
+    public static void setOutlineRange(double value) { outlineRange=normalize(value,10,5); clearMarks(); }
+    private static int activeRange(IsoPlayer player) {
+        if(player.getVehicle()!=null)return vehicleRange;
+        return player.isAiming() && equippedAxe(player)!=null ? outlineRange : walkingRange;
     }
     public static HandWeapon equippedAxe(IsoPlayer player) {
         if(player==null)return null;
@@ -88,9 +92,13 @@ public final class Main {
             && square.x==Math.floor(x) && square.y==Math.floor(y) && square.z==Math.floor(z);
     }
     public static boolean insideRadius(IsoPlayer player,IsoTree tree) {
-        if(outlineRange==0 || player==null || tree==null || tree.square==null)return false;
+        if(player==null || tree==null || tree.square==null)return false;
+        return insideRadius(player,tree,activeRange(player));
+    }
+    private static boolean insideRadius(IsoPlayer player,IsoTree tree,int range) {
+        if(range==0)return false;
         float dx=tree.square.x+.5f-player.getX(),dy=tree.square.y+.5f-player.getY();
-        return dx*dx+dy*dy<=outlineRange*outlineRange;
+        return dx*dx+dy*dy<=range*range;
     }
     public static void update(IsoPlayer player) {
         updateAt(player,System.nanoTime());
@@ -135,12 +143,12 @@ public final class Main {
         return true;
     }
     private static int outlineMode(IsoPlayer player) {
-        if(outlineRange==0 || !supported || player.getJoypadBind()!=-1 || player.isDead())return HIDDEN;
+        if(activeRange(player)==0 || !supported || player.getJoypadBind()!=-1 || player.isDead())return HIDDEN;
         IsoGridSquare square=player.getCurrentSquare();
         if(!matchesPosition(player,square) || !square.isOutside() || square.isInARoom())return HIDDEN;
-        if(player.getVehicle()!=null)return showInVehicle ? GRAY : HIDDEN;
+        if(player.getVehicle()!=null)return GRAY;
         if(player.isAiming() && equippedAxe(player)!=null)return AIM;
-        return alwaysShow ? GRAY : HIDDEN;
+        return GRAY;
     }
     private static void paintAroundPlayer(IsoPlayer player,boolean detectHit) {
         float playerX=player.getX(),playerY=player.getY();
@@ -148,12 +156,13 @@ public final class Main {
         if(trackedPlayer!=player){clearMarks();trackedPlayer=player;}
         IsoCell cell=IsoWorld.instance.currentCell;
         if(cell==null || !matchesPosition(player,player.getCurrentSquare())){clearMarks();return;}
-        boolean rebuilt=refreshCandidates(cell,player.getCurrentSquare());
+        int range=activeRange(player);
+        boolean rebuilt=refreshCandidates(cell,player.getCurrentSquare(),range);
         if(rebuilt || playerX!=radiusX || playerY!=radiusY){
             radiusX=playerX;radiusY=playerY;generation++;
             for(IsoTree tree:candidates){
                 radiusChecks++;
-                if(tree.square==null || tree.getObjectIndex()<0 || !insideRadius(player,tree))continue;
+                if(tree.square==null || tree.getObjectIndex()<0 || !insideRadius(player,tree,range))continue;
                 Mark mark=marks.get(tree);
                 if(mark==null){mark=new Mark(tree,player.getPlayerNum());marks.put(tree,mark);}
                 mark.generation=generation;
@@ -168,10 +177,10 @@ public final class Main {
         currentTarget=detectHit ? swingTarget(player,equippedAxe(player)) : null;
         for(var entry:marks.entrySet())entry.getValue().paint(entry.getKey(),entry.getKey()==currentTarget);
     }
-    private static boolean refreshCandidates(IsoCell cell,IsoGridSquare origin) {
+    private static boolean refreshCandidates(IsoCell cell,IsoGridSquare origin,int range) {
         Region area=region;
-        boolean rebuild=area==null || area.cell!=cell || area.x!=origin.x || area.y!=origin.y || area.z!=origin.z || area.radius!=outlineRange;
-        if(rebuild){area=new Region(cell,origin.x,origin.y,origin.z,outlineRange);region=area;Arrays.fill(chunks,null);}
+        boolean rebuild=area==null || area.cell!=cell || area.x!=origin.x || area.y!=origin.y || area.z!=origin.z || area.radius!=range;
+        if(rebuild){area=new Region(cell,origin.x,origin.y,origin.z,range);region=area;Arrays.fill(chunks,null);}
         long revision=worldChanges.get();
         rebuild|=revision!=cachedWorldChange;
         int index=0;
