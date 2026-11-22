@@ -1,8 +1,8 @@
 {
-    "IGUI_WoodCutter_OutlineRange":  "Tree outline range",
-    "IGUI_WoodCutter_OutlineRangeHelp":  "Radius around the player in tiles. Default: 5. 0 disables tree outlines.",
-    "IGUI_WoodCutter_AlwaysShow":  "Always show tree outlines",
-    "IGUI_WoodCutter_AlwaysShowHelp":  "Outdoors on foot, even without an axe or aiming. Green targets require aiming with an axe in both hands. Hidden indoors and in vehicles. Off by default.",
-    "IGUI_WoodCutter_ShowInVehicle":  "Show tree outlines in vehicles",
-    "IGUI_WoodCutter_ShowInVehicleHelp":  "Gray outlines only while in a vehicle, including passengers and parked vehicles. Hidden indoors. Off by default."
+    "IGUI_WoodCutter_OutlineRange": "Tree outline range: axe aiming",
+    "IGUI_WoodCutter_OutlineRangeHelp": "Radius around the player in tiles when aiming with an axe held in both hands. Default: 5. 0 disables this mode.",
+    "IGUI_WoodCutter_WalkingRange": "Tree outline range: on foot",
+    "IGUI_WoodCutter_WalkingRangeHelp": "Radius outdoors on foot, even without an axe or aiming: 0–10 tiles. Default: 0 (off). Axe aiming uses its own range. Hidden indoors.",
+    "IGUI_WoodCutter_VehicleRange": "Tree outline range: in vehicle",
+    "IGUI_WoodCutter_VehicleRangeHelp": "Gray outlines only, including passengers and stopped vehicles: 0–20 tiles. Default: 0 (off). Hidden indoors."
 }
