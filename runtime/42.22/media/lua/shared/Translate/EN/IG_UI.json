@@ -1,8 +1,16 @@
 {
-    "IGUI_WoodCutter_OutlineRange": "Tree outline range: axe aiming",
-    "IGUI_WoodCutter_OutlineRangeHelp": "Radius around the player in tiles when aiming with an axe held in both hands. Default: 5. 0 disables this mode.",
-    "IGUI_WoodCutter_WalkingRange": "Tree outline range: on foot",
-    "IGUI_WoodCutter_WalkingRangeHelp": "Radius outdoors on foot, even without an axe or aiming: 0–10 tiles. Default: 0 (off). Axe aiming uses its own range. Hidden indoors.",
-    "IGUI_WoodCutter_VehicleRange": "Tree outline range: in vehicle",
-    "IGUI_WoodCutter_VehicleRangeHelp": "Gray outlines only, including passengers and stopped vehicles: 0–20 tiles. Default: 0 (off). Hidden indoors."
+    "IGUI_WoodCutter_OutlineRange":  "Tree outline range: axe aiming",
+    "IGUI_WoodCutter_OutlineRangeHelp":  "Radius around the player in tiles when aiming with an axe held in both hands. Default: 5. 0 disables this mode.",
+    "IGUI_WoodCutter_WalkingRange":  "Tree outline range: on foot",
+    "IGUI_WoodCutter_WalkingRangeHelp":  "Radius outdoors on foot, even without an axe or aiming: 0–10 tiles. Default: 0 (off). Axe aiming uses its own range. Hidden indoors.",
+    "IGUI_WoodCutter_VehicleRange":  "Tree outline range: in vehicle",
+    "IGUI_WoodCutter_VehicleRangeHelp":  "Base outlines only, including passengers and stopped vehicles: 0–20 tiles. Default: 0 (off). Hidden indoors.",
+    "IGUI_WoodCutter_ToggleAmbient":  "Toggle outlines on foot / in vehicles",
+    "IGUI_WoodCutter_ToggleAmbientHelp":  "One key for both modes. Radius 0 stays disabled. Axe aiming is independent. Default: unbound.",
+    "IGUI_WoodCutter_BaseColor":  "Tree base outline color",
+    "IGUI_WoodCutter_TargetColor":  "Axe strike target outline color",
+    "IGUI_WoodCutter_RevertColor":  "Revert Color",
+    "IGUI_WoodCutter_CloseColorPicker":  "Close",
+    "IGUI_WoodCutter_AmbientEnabled":  "Outlines on foot / in vehicles",
+    "IGUI_WoodCutter_AmbientEnabledHelp":  "Saved switch. The key changes the same state. Axe aiming stays independent; range 0 remains disabled."
 }
