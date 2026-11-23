@@ -5,18 +5,18 @@
   "Entries": [
     {
       "Path": "antikristianos/woodcutter/Main$Mark.class",
-      "Size": 4304,
-      "Sha256": "D10B5A208997A2BAAF76DB74C72155A4B8CA69C8813802E63EE0250F36631709"
+      "Size": 4081,
+      "Sha256": "6912A589CB8A8B33702BA429A6974397AE27722A694FDB73A64847971E91505C"
     },
     {
       "Path": "antikristianos/woodcutter/Main$Region.class",
       "Size": 798,
-      "Sha256": "AA534558828A83F3FB319D8495545056F3259B1822F0679AAFEF146DDB9FE448"
+      "Sha256": "DD22632FCEF4044002B981405D433432700E5884B29F832566DE52505D2A2787"
     },
     {
       "Path": "antikristianos/woodcutter/Main.class",
-      "Size": 15810,
-      "Sha256": "9A515D51DC920C0D0BF85D6A8C804DAFDF08CE8C5AD0D30ECED46C60993B3266"
+      "Size": 16517,
+      "Sha256": "5691D71680DC7A6ADC6E379FCE1B12D3E9CD09817A08DA138F8E785798464B53"
     },
     {
       "Path": "antikristianos/woodcutter/OutlinePasses$Snapshot.class",

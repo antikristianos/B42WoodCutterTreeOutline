@@ -19,6 +19,8 @@ public final class Main {
     private static final long POLL_NS=100_000_000L;
     private static int outlineRange=5;
     private static int walkingRange,vehicleRange;
+    private static boolean ambientEnabled=true;
+    private static int baseColor=0xff808080,targetColor=0xff00ff00;
     private static final int HIDDEN=0,GRAY=1,AIM=2;
     private static final List<IsoTree> candidates=new ArrayList<>();
     private static final IdentityHashMap<IsoTree,Mark> marks=new IdentityHashMap<>();
@@ -60,12 +62,28 @@ public final class Main {
     }
     public static int getWalkingRange() { return walkingRange; }
     public static int getVehicleRange() { return vehicleRange; }
+    public static boolean getAmbientEnabled() { return ambientEnabled; }
+    public static void setAmbientEnabled(boolean enabled) {
+        if(ambientEnabled!=enabled){
+            ambientEnabled=enabled;
+            if(!enabled && trackedPlayer!=null && outlineMode(trackedPlayer)!=AIM)clearMarks();
+        }
+    }
+    private static float channel(double value,float fallback) {
+        return Double.isFinite(value) ? (float)Math.max(0,Math.min(1,value)) : fallback;
+    }
+    public static void setBaseColor(double r,double g,double b,double a) {
+        baseColor=Color.colorToABGR(channel(r,128f/255f),channel(g,128f/255f),channel(b,128f/255f),channel(a,1));
+    }
+    public static void setTargetColor(double r,double g,double b,double a) {
+        targetColor=Color.colorToABGR(channel(r,0),channel(g,1),channel(b,0),channel(a,1));
+    }
     public static void setWalkingRange(double value) { walkingRange=normalize(value,10,0); clearMarks(); }
     public static void setVehicleRange(double value) { vehicleRange=normalize(value,20,0); clearMarks(); }
     public static void setOutlineRange(double value) { outlineRange=normalize(value,10,5); clearMarks(); }
     private static int activeRange(IsoPlayer player) {
-        if(player.getVehicle()!=null)return vehicleRange;
-        return player.isAiming() && equippedAxe(player)!=null ? outlineRange : walkingRange;
+        if(player.getVehicle()!=null)return ambientEnabled ? vehicleRange : 0;
+        return player.isAiming() && equippedAxe(player)!=null ? outlineRange : ambientEnabled ? walkingRange : 0;
     }
     public static HandWeapon equippedAxe(IsoPlayer player) {
         if(player==null)return null;
@@ -300,10 +318,9 @@ public final class Main {
                 if(!PreparedContours.sameGeometry(binding,next))pose=null;
                 binding=next;
             }
-            paintedColor=hit ? 0xff00ff00 : 0xff808080;
+            paintedColor=hit ? targetColor : baseColor;
             if(tree.getOutlineHighlightCol(player)!=paintedColor){
-                float gray=128f/255f;
-                tree.setOutlineHighlightCol(player,hit?0f:gray,hit?1f:gray,hit?0f:gray,1f);colorWrites++;
+                tree.setOutlineHighlightCol(player,Color.getRedChannelFromABGR(paintedColor),Color.getGreenChannelFromABGR(paintedColor),Color.getBlueChannelFromABGR(paintedColor),Color.getAlphaChannelFromABGR(paintedColor));colorWrites++;
             }
             if(!tree.isOutlineHlAttached(player)){tree.setOutlineHlAttached(player,true);flagWrites++;}
             if(tree.isOutlineHlBlink(player)){tree.setOutlineHlBlink(player,false);flagWrites++;}
