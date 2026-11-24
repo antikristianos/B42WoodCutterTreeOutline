@@ -942,9 +942,18 @@ function ColorPicker.open(config)
     activeWindow:setVisible(true)
     activeWindow:bringToTop()
     activeFrame:bringToTop()
+    return activeWindow
+end
+
+function ColorPicker.getInstance()
+    return activeWindow
 end
 
 function ColorPicker.install(modId)
+    local mods = getActivatedMods ~= nil and getActivatedMods() or nil
+    if mods ~= nil and mods:contains("ModManager") then
+        require("WoodCutter/ModManagerCompatibility").install(modId, ColorPicker, OPTION_DATA, saveColor)
+    end
     if installed or MainOptions == nil or MainOptions.onModColorPick == nil then
         return
     end
