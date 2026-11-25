@@ -1,4 +1,4 @@
--- Reuses the Hi-Res-Clock RGBA/HSV picker and cached controls; only option bindings and text keys differ.
+-- Adapted Hi-Res-Clock RGBA/HSV picker with owned reset and persistence controls.
 pcall(require, "ISUI/ISPanel")
 pcall(require, "ISUI/ISButton")
 pcall(require, "ISUI/ISLabel")
@@ -64,6 +64,7 @@ local REFERENCE_SLIDER_THUMB_WIDTH = 5
 local COLOR_BOX_CELLS = 48
 local HUE_BAR_STEPS = 36
 local REVERT_BORDER_COLOR = { r = 0.9, g = 0.15, b = 0.15, a = 1 }
+local buttonMetricsCache = nil
 
 local function clamp01(value, fallback)
     local number = tonumber(value) or fallback or 0
@@ -93,7 +94,7 @@ end
 local function safeText(key, fallback)
     if getText ~= nil then
         local text = getText(key)
-        if text ~= nil and text ~= key then
+        if text ~= nil and text ~= "" and text ~= key then
             return text
         end
     end
@@ -115,6 +116,34 @@ local function colorCopy(color)
         b = clamp01(color.b, 1),
         a = clamp01(color.a, 1),
     }
+end
+
+-- Save only the confirmed color; unrelated pending options must stay pending.
+local function saveColor(modId, optionKey, color)
+    if getFileReader == nil or getFileWriter == nil then return false end
+    local prefix = "colorpicker|" .. modId .. "|" .. optionKey .. "|"
+    local lines = {}
+    local reader = getFileReader("ModOptions.ini", false)
+    if reader ~= nil then
+        while true do
+            local line = reader:readLine()
+            if line == nil then break end
+            if string.sub(line, 1, #prefix) ~= prefix then lines[#lines + 1] = line end
+        end
+        reader:close()
+    end
+    local writer = getFileWriter("ModOptions.ini", false, false)
+    if writer == nil then return false end
+    for _, line in ipairs(lines) do writer:write(line .. "\r\n") end
+    writer:write(prefix .. color.r .. " " .. color.g .. " " .. color.b .. " " .. color.a .. "\r\n")
+    writer:close()
+    local other = PZAPI.ModOptions.OtherOptions
+    if other ~= nil then
+        for index = #other, 1, -1 do
+            if string.sub(other[index], 1, #prefix) == prefix then table.remove(other, index) end
+        end
+    end
+    return true
 end
 
 local function rgbToHsv(color)
@@ -270,6 +299,26 @@ local function resolveMetrics()
     local colorBoxY = swatchY + swatchHeight
             + responsiveMetric(REFERENCE_SWATCH_COLOR_GAP, scale)
     local buttonHeight = responsiveMetric(REFERENCE_BUTTON_HEIGHT, scale)
+    local revertText = safeText("IGUI_WoodCutter_RevertColor", "Revert Color")
+    local resetText = safeText("IGUI_WorldMapEditor_Reset",
+            safeText("UI_optionscreen_KeybindDefault", "Reset"))
+    local applyText = safeText("UI_btn_apply", "Apply")
+    local cached = buttonMetricsCache
+    if cached == nil or cached.scale ~= scale or cached.revertText ~= revertText
+            or cached.resetText ~= resetText or cached.applyText ~= applyText then
+        local manager = getTextManager ~= nil and getTextManager() or nil
+        local function buttonWidth(text, reference)
+            local width = manager ~= nil and manager:MeasureStringX(UIFont.Small, text) or 0
+            return math.max(responsiveMetric(reference, scale), width + outerPadding * 2)
+        end
+        cached = {scale = scale, revertText = revertText, resetText = resetText, applyText = applyText,
+            revertWidth = buttonWidth(revertText, REFERENCE_REVERT_BUTTON_WIDTH),
+            resetWidth = buttonWidth(resetText, REFERENCE_CLOSE_BUTTON_WIDTH),
+            applyWidth = buttonWidth(applyText, REFERENCE_CLOSE_BUTTON_WIDTH)}
+        buttonMetricsCache = cached
+    end
+    pickerWidth = math.max(pickerWidth, cached.revertWidth + cached.resetWidth + cached.applyWidth
+            + outerPadding * 4)
     local buttonY = colorBoxY + colorBoxSize + outerPadding
     local pickerHeight = buttonY + buttonHeight + outerPadding
     local colorInset = responsiveMetric(REFERENCE_COLOR_INSET, scale)
@@ -320,8 +369,12 @@ local function resolveMetrics()
         swatchHeight = swatchHeight,
         buttonHeight = buttonHeight,
         buttonY = buttonY,
-        revertButtonWidth = responsiveMetric(REFERENCE_REVERT_BUTTON_WIDTH, scale),
-        closeButtonWidth = responsiveMetric(REFERENCE_CLOSE_BUTTON_WIDTH, scale),
+        revertButtonWidth = cached.revertWidth,
+        resetButtonWidth = cached.resetWidth,
+        closeButtonWidth = cached.applyWidth,
+        revertText = revertText,
+        resetText = resetText,
+        applyText = applyText,
         pickerWidth = pickerWidth,
         pickerHeight = pickerHeight,
         pickerXOffset = responsiveMetric(REFERENCE_PICKER_X_OFFSET, scale, 0),
@@ -493,7 +546,7 @@ function Window:createChildren()
 
     self.resetButton = ISButton:new(metrics.outerPadding, metrics.buttonY,
             metrics.revertButtonWidth, metrics.buttonHeight,
-            safeText("IGUI_WoodCutter_RevertColor", "Revert Color"), self, Window.onReset)
+            metrics.revertText, self, Window.onReset)
     self.resetButton:initialise()
     self.resetButton:instantiate()
     self.resetButton:setWidth(metrics.revertButtonWidth)
@@ -502,9 +555,19 @@ function Window:createChildren()
     Hotpath.installTextButton(self.resetButton)
     self:addChild(self.resetButton)
 
+    self.defaultButton = ISButton:new(metrics.outerPadding * 2 + metrics.revertButtonWidth,
+            metrics.buttonY, metrics.resetButtonWidth, metrics.buttonHeight,
+            metrics.resetText, self, Window.onDefault)
+    self.defaultButton:initialise()
+    self.defaultButton:instantiate()
+    self.defaultButton:setWidth(metrics.resetButtonWidth)
+    self.defaultButton:setHeight(metrics.buttonHeight)
+    Hotpath.installTextButton(self.defaultButton)
+    self:addChild(self.defaultButton)
+
     self.closeButton = ISButton:new(self:getWidth() - metrics.outerPadding - metrics.closeButtonWidth,
             metrics.buttonY, metrics.closeButtonWidth, metrics.buttonHeight,
-            safeText("IGUI_WoodCutter_CloseColorPicker", "Close"), self, Window.onClose)
+            metrics.applyText, self, Window.onApply)
     self.closeButton:initialise()
     self.closeButton:instantiate()
     self.closeButton:setWidth(metrics.closeButtonWidth)
@@ -683,6 +746,16 @@ function Window:onClose()
     closeActiveWindow()
 end
 
+function Window:onDefault()
+    self.color = colorCopy(self.defaultColor)
+    self:applyColor(true)
+end
+
+function Window:onApply()
+    if self.saveColor ~= nil and self.saveColor(colorCopy(self.color)) == false then return end
+    self:onClose()
+end
+
 function Window:rebuildForMetrics(metrics)
     self.draggingColorBox = false
     self.draggingHueBar = false
@@ -820,6 +893,7 @@ function Window:new(config)
     o.defaultColor = colorCopy(config.defaultColor)
     o.getColor = config.getColor
     o.setColor = config.setColor
+    o.saveColor = config.saveColor
     o.isOwnerVisible = config.isOwnerVisible
     o.metrics = metrics
     o.color = colorCopy(config.getColor ~= nil and config.getColor() or config.defaultColor)
@@ -868,9 +942,18 @@ function ColorPicker.open(config)
     activeWindow:setVisible(true)
     activeWindow:bringToTop()
     activeFrame:bringToTop()
+    return activeWindow
+end
+
+function ColorPicker.getInstance()
+    return activeWindow
 end
 
 function ColorPicker.install(modId)
+    local mods = getActivatedMods ~= nil and getActivatedMods() or nil
+    if mods ~= nil and mods:contains("ModManager") then
+        require("WoodCutter/ModManagerCompatibility").install(modId, ColorPicker, OPTION_DATA, saveColor)
+    end
     if installed or MainOptions == nil or MainOptions.onModColorPick == nil then
         return
     end
@@ -895,6 +978,15 @@ function ColorPicker.install(modId)
             setColor = function(color)
                 button.backgroundColor = color
                 updateGameOption(button, color)
+            end,
+            saveColor = function(color)
+                local options = PZAPI.ModOptions:getOptions(modId)
+                local option = options ~= nil and options:getOption(optionKey) or nil
+                if option == nil then return false end
+                if option.onChangeApply ~= nil then option:onChangeApply(color)
+                else option:setValue(color) end
+                button.backgroundColor = option:getValue()
+                return saveColor(modId, optionKey, option:getValue())
             end,
         })
     end

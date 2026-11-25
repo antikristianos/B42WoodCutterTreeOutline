@@ -3,16 +3,16 @@
   "Project": "B42WoodCutterTreeOutline",
   "Repository": "antikristianos/B42WoodCutterTreeOutline",
   "Branch": "wip",
-  "Tag": "wip-1.122",
-  "ModVersion": "1.5.1",
-  "CollectionVersion": "1.122",
+  "Tag": "wip-1.123",
+  "ModVersion": "1.6.2",
+  "CollectionVersion": "1.123",
   "WorkshopId": 3802764936,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
-  "UploadManifestSha256": "4AEAE49114ECEEB6C7AACA2D7AED84E1A29FE03F523F7EE1A4123311B4C53081",
+  "UploadManifestSha256": "F6F37D78A65DD5FCAD345CC7A4AB10C4C7C5264839BB02B7A7C9FFF35D5CAD02",
   "Artifact": {
     "Path": "mods/B42WoodCutterTreeOutilneZB_WIP/42.22/media/java/client/B42WoodCutterTreeOutline.jar",
     "Size": 527539,
-    "Sha256": "409BF71F7778CFDB75A3601A47628749E769A34039892792C054BD903FCD5E71"
+    "Sha256": "65EBCC2AE6E51FA2CAB0BBC7AD794C788C7D463CBB8D69F5442B528D9BBA0554"
   },
   "AdditionalArtifacts": [],
   "Sources": [
@@ -24,12 +24,12 @@
     {
       "Path": "MANIFEST.MF",
       "Size": 93,
-      "Sha256": "F9910B7FCDBF74E21F3603F2FB5A4A8DB7605A21500C6F830D30D3C533F28C46"
+      "Sha256": "01CD2C23F496AFFC714F7259A4DC02DDA872C660D4A33FD21CCFFFD702F4C0F8"
     },
     {
       "Path": "README.md",
       "Size": 1471,
-      "Sha256": "72B40AFEFF2172F4B5B5C4805A9A0CC020B5099093F3ECBAB98756BBBC866977"
+      "Sha256": "DFD72898EECC6E9A38AD5DCA557CEC01F28F3B34430903C7AC094CBFAFAFFC84"
     },
     {
       "Path": "build.json",
@@ -48,13 +48,18 @@
     },
     {
       "Path": "runtime/42.22/media/lua/client/WoodCutter/ColorPicker.lua",
-      "Size": 31793,
-      "Sha256": "3848B8B543F05CAAB0BC83CD3E2D606E705A4EFA32BD7185B3E6AC0F3D9721FB"
+      "Size": 35910,
+      "Sha256": "7DFACFF4063A2053A030698F18028DD49AB89F63D142570FFA32B8E59B70CBAB"
     },
     {
       "Path": "runtime/42.22/media/lua/client/WoodCutter/KeyBinding.lua",
       "Size": 1485,
       "Sha256": "E8C429EF59A889D1A5DFF59715FFBA1CEA8FADF74681A3557FBF5859D9C9CDDB"
+    },
+    {
+      "Path": "runtime/42.22/media/lua/client/WoodCutter/ModManagerCompatibility.lua",
+      "Size": 4116,
+      "Sha256": "3F35B5D063FD83208EC2CAA54788BF567DFB17D71826240D77DF6B84ADC580A3"
     },
     {
       "Path": "runtime/42.22/media/lua/client/WoodCutter/UIHotpath.lua",
@@ -63,8 +68,8 @@
     },
     {
       "Path": "runtime/42.22/media/lua/client/WoodCutterTreeOutline.lua",
-      "Size": 9970,
-      "Sha256": "7AA0094DF9CDD52802F9840E8811941F6FAF0F466C8BD8287B8E1FEA1E3AD4C6"
+      "Size": 10077,
+      "Sha256": "FCA9734BE0F5082E0EA4FD285CD7EAC8EF51BDAA9BC6F6A4040B1392F03BA82C"
     },
     {
       "Path": "runtime/42.22/media/lua/shared/Translate/EN/IG_UI.json",
@@ -74,7 +79,7 @@
     {
       "Path": "runtime/42.22/mod.info",
       "Size": 439,
-      "Sha256": "21FB32CEB5D09F81163FF6213F3B88E2EF230FD18C6B54F32EA90F8A5EA33432"
+      "Sha256": "ABF9125E15213C6A39271A6374974517A9331DEAD3D768AAE3D41BB022FD9839"
     },
     {
       "Path": "src/antikristianos/woodcutter/Main.java",

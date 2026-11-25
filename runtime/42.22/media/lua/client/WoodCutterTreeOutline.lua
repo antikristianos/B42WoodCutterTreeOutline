@@ -69,11 +69,13 @@ local function channel(value, fallback)
     if not value or value ~= value or value == math.huge or value == -math.huge then return fallback end
     return math.max(0, math.min(1, value))
 end
-local function applyColors()
+local function applyColors(changedOption)
     for _, entry in ipairs({{baseColor, 128/255, 128/255, 128/255}, {targetColor, 0, 1, 0}}) do
         local option = entry[1]
-        local color = option:getValue() or {}
-        option:setValue({r=channel(color.r,entry[2]), g=channel(color.g,entry[3]), b=channel(color.b,entry[4]), a=channel(color.a,1)})
+        if changedOption == nil or option == changedOption then
+            local color = option:getValue() or {}
+            option:setValue({r=channel(color.r,entry[2]), g=channel(color.g,entry[3]), b=channel(color.b,entry[4]), a=channel(color.a,1)})
+        end
     end
     if WoodCutterTreeOutline then
         local base, target = baseColor:getValue(), targetColor:getValue()
@@ -82,7 +84,7 @@ local function applyColors()
     end
 end
 for _, option in ipairs({baseColor, targetColor}) do
-    option.onChangeApply = function(self, value) self.color = value; applyColors() end
+    option.onChangeApply = function(self, value) self.color = value; applyColors(self) end
 end
 local function installColorPicker()
     if MainOptions and MainOptions.onModColorPick then
